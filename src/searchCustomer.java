@@ -1,5 +1,6 @@
 
 
+import java.sql.Blob;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
@@ -15,7 +16,9 @@ import java.util.logging.Logger;
 import java.sql.Statement;
 import java.sql.ResultSet;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -33,12 +36,12 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  *
  * @author Barbar
  */
-public class addCustomer extends javax.swing.JInternalFrame {
+public class searchCustomer extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form addCustomer
      */
-    public addCustomer() {
+    public searchCustomer() {
         initComponents();
         autoID();
     }
@@ -105,12 +108,13 @@ public class addCustomer extends javax.swing.JInternalFrame {
         r2 = new javax.swing.JRadioButton();
         txtdob = new com.toedter.calendar.JDateChooser();
         jLabel21 = new javax.swing.JLabel();
-        txtid = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         txtphoto = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        txtcustid = new javax.swing.JTextField();
+        jButton7 = new javax.swing.JButton();
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(204, 0, 0));
@@ -410,10 +414,6 @@ public class addCustomer extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        txtid.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
-        txtid.setForeground(new java.awt.Color(204, 0, 0));
-        txtid.setText("jLabel7");
-
         jLabel18.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel18.setText("Customer ID");
 
@@ -440,25 +440,35 @@ public class addCustomer extends javax.swing.JInternalFrame {
             }
         });
 
+        jButton7.setText("Find");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton2)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtid, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jButton2)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(27, 27, 27)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtphoto, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(0, 12, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtcustid, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(25, 25, 25))
+                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(27, 27, 27)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtphoto, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(0, 10, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -471,7 +481,8 @@ public class addCustomer extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtid, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtcustid)
+                    .addComponent(jButton7))
                 .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
@@ -481,7 +492,7 @@ public class addCustomer extends javax.swing.JInternalFrame {
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(6, 6, 6)
                 .addComponent(jButton2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -537,7 +548,7 @@ public class addCustomer extends javax.swing.JInternalFrame {
     */
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         
-        String id = txtid.getText();
+        //String id = txtid.getText();
         String firstname = txtfirstname.getText();
         String lasename = txtlastname.getText();
         String nic = txtnic.getText();
@@ -561,7 +572,7 @@ public class addCustomer extends javax.swing.JInternalFrame {
             con = DriverManager.getConnection("jdbc:mysql://localhost/airline","root","");
             pst = con.prepareStatement("insert into customer(id, firstname,lastname,nic,passport,address,dob,gender,contact,photo)values(?,?,?,?,?,?,?,?,?,?)");
         
-           pst.setString(1,id);
+           //pst.setString(1,id);
            pst.setString(2,firstname);
            pst.setString(3,lasename);
            pst.setString(4,nic);
@@ -592,6 +603,72 @@ public class addCustomer extends javax.swing.JInternalFrame {
         this.hide();
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+
+        String id = txtcustid.getText();
+
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            con = DriverManager.getConnection("jdbc:mysql://localhost/airline","root","");
+            pst = con.prepareStatement("select * from customer where id=?");
+            pst.setString(1, id);
+            ResultSet rs = pst.executeQuery();
+
+            if(rs.next()==false){
+                JOptionPane.showMessageDialog(this, "Record not Found");
+            }
+            else{
+                String fname = rs.getString("firstname");
+                String lname = rs.getString("lastname");
+                String nic = rs.getString("nic");
+                String passport = rs.getString("passport");
+                String address = rs.getString("address");
+                String dob = rs.getString("dob");
+                Date date1 =  new SimpleDateFormat("yyyy-MM-dd").parse(dob);
+
+                String gender = rs.getString("gender");
+
+                Blob blob = rs.getBlob("photo");
+
+                byte[] _imagebytes = blob.getBytes(1, (int) blob.length() );
+                ImageIcon image = new ImageIcon(_imagebytes);
+                Image im = image.getImage();
+                Image myImg = im.getScaledInstance(txtphoto.getWidth(), txtphoto.getHeight(),Image.SCALE_SMOOTH);
+                ImageIcon newImage = new ImageIcon(myImg);
+
+                if(gender.equals("Female")){
+                    r1.setSelected(false);
+                    r2.setSelected(true);
+                }
+                else{
+                    r1.setSelected(true);
+                    r2.setSelected(false);
+                }
+
+                String contact = rs.getString("contact");
+
+                txtfirstname.setText(fname.trim());
+                txtlastname.setText(lname.trim());
+                txtnic.setText(nic.trim());
+                txtpassport.setText(passport.trim());
+                txtaddress.setText(address.trim());
+                txtcontact.setText(contact.trim());
+                txtdob.setDate(date1);
+                txtphoto.setIcon(newImage);
+
+                String photo = rs.getString("photo");
+            }
+
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(searchCustomer.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(searchCustomer.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParseException ex) {
+            Logger.getLogger(searchCustomer.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_jButton7ActionPerformed
+
     
     public void autoID(){
         
@@ -603,14 +680,14 @@ public class addCustomer extends javax.swing.JInternalFrame {
             rs.next();
             rs.getString("MAX(id)");
             if(rs.getString("MAX(id)") == null){
-                txtid.setText("CS001");
+                //txtid.setText("CS001");
             }
             else{
                 long id = Long.parseLong(rs.getString("MAX(id)").
                 substring(2, rs.getString("MAX(id)").length()));
                 
                 id++;
-                txtid.setText("CS"+String.format("%03d", id));
+                //txtid.setText("CS"+String.format("%03d", id));
             }
             
             
@@ -653,6 +730,7 @@ public class addCustomer extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -692,9 +770,9 @@ public class addCustomer extends javax.swing.JInternalFrame {
     private javax.swing.JRadioButton r2;
     private javax.swing.JTextArea txtaddress;
     private javax.swing.JTextField txtcontact;
+    private javax.swing.JTextField txtcustid;
     private com.toedter.calendar.JDateChooser txtdob;
     private javax.swing.JTextField txtfirstname;
-    private javax.swing.JLabel txtid;
     private javax.swing.JTextField txtlastname;
     private javax.swing.JTextField txtnic;
     private javax.swing.JTextField txtpassport;
