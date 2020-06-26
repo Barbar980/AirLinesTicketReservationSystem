@@ -618,13 +618,7 @@ public class addCustomer extends javax.swing.JInternalFrame {
             Logger.getLogger(addCustomer.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(addCustomer.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        
-        
-        
-        
-        
+        }  
     }
     
     

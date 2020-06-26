@@ -426,7 +426,7 @@ public class searchCustomer extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton6.setText("Add");
+        jButton6.setText("Update");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);
@@ -548,7 +548,7 @@ public class searchCustomer extends javax.swing.JInternalFrame {
     */
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         
-        //String id = txtid.getText();
+        String id = txtcustid.getText();
         String firstname = txtfirstname.getText();
         String lasename = txtlastname.getText();
         String nic = txtnic.getText();
@@ -562,7 +562,7 @@ public class searchCustomer extends javax.swing.JInternalFrame {
         gender = "Male";
         }
         else{
-            gender = "Femael";
+            gender = "Female";
         }
         
         String contact = txtcontact.getText();
@@ -570,21 +570,22 @@ public class searchCustomer extends javax.swing.JInternalFrame {
         try {
             Class.forName("com.mysql.jdbc.Driver");          
             con = DriverManager.getConnection("jdbc:mysql://localhost/airline","root","");
-            pst = con.prepareStatement("insert into customer(id, firstname,lastname,nic,passport,address,dob,gender,contact,photo)values(?,?,?,?,?,?,?,?,?,?)");
+            pst = con.prepareStatement("update customer set firstname=?,lastname=?,nic=?,passport=?,address=?,dob=?,gender=?,contact=?,photo=? where id=?");
         
-           //pst.setString(1,id);
-           pst.setString(2,firstname);
-           pst.setString(3,lasename);
-           pst.setString(4,nic);
-           pst.setString(5,passport);
-           pst.setString(6,address);
-           pst.setString(7,date);
-           pst.setString(8,gender);
-           pst.setString(9,contact);
-           pst.setBytes(10,userimage);
+           
+           pst.setString(1,firstname);
+           pst.setString(2,lasename);
+           pst.setString(3,nic);
+           pst.setString(4,passport);
+           pst.setString(5,address);
+           pst.setString(6,date);
+           pst.setString(7,gender);
+           pst.setString(8,contact);
+           pst.setBytes(9,userimage);
+           pst.setString(10,id);
            pst.executeUpdate();
            
-           JOptionPane.showMessageDialog(null, "Registration Created");
+           JOptionPane.showMessageDialog(null, "Update Created");
            
         
         } catch (ClassNotFoundException ex) {
