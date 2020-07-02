@@ -56,8 +56,6 @@ public class login extends javax.swing.JFrame {
 
         Password.setText("Password");
 
-        txtusername.setText("jTextField1");
-
         jButton1.setText("Cancel");
 
         jButton2.setText("Login");
