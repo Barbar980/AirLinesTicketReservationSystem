@@ -83,8 +83,8 @@ public class searchCustomer extends javax.swing.JInternalFrame {
         txtcontact = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
-        r1 = new javax.swing.JRadioButton();
-        r2 = new javax.swing.JRadioButton();
+        radioMaleButton = new javax.swing.JRadioButton();
+        radioFemaleButton = new javax.swing.JRadioButton();
         txtdob = new com.toedter.calendar.JDateChooser();
         jLabel21 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
@@ -93,7 +93,7 @@ public class searchCustomer extends javax.swing.JInternalFrame {
         jButton6 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         txtcustid = new javax.swing.JTextField();
-        jButton7 = new javax.swing.JButton();
+        findButton = new javax.swing.JButton();
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(204, 0, 0));
@@ -345,9 +345,14 @@ public class searchCustomer extends javax.swing.JInternalFrame {
         jLabel20.setForeground(new java.awt.Color(255, 255, 255));
         jLabel20.setText("Gender");
 
-        r1.setText("Male");
+        radioMaleButton.setText("Male");
+        radioMaleButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioMaleButtonActionPerformed(evt);
+            }
+        });
 
-        r2.setText("Female");
+        radioFemaleButton.setText("Female");
 
         jLabel21.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(255, 255, 255));
@@ -367,9 +372,9 @@ public class searchCustomer extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(r1)
+                        .addComponent(radioMaleButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(r2))
+                        .addComponent(radioFemaleButton))
                     .addComponent(txtdob, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtcontact))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -384,8 +389,8 @@ public class searchCustomer extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel20)
-                    .addComponent(r1)
-                    .addComponent(r2))
+                    .addComponent(radioMaleButton)
+                    .addComponent(radioFemaleButton))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel19)
@@ -419,10 +424,10 @@ public class searchCustomer extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton7.setText("Find");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        findButton.setText("Find");
+        findButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                findButtonActionPerformed(evt);
             }
         });
 
@@ -440,7 +445,7 @@ public class searchCustomer extends javax.swing.JInternalFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtcustid, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(findButton, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(25, 25, 25))
                             .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(27, 27, 27)
@@ -461,7 +466,7 @@ public class searchCustomer extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtcustid)
-                    .addComponent(jButton7))
+                    .addComponent(findButton))
                 .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
@@ -523,7 +528,7 @@ public class searchCustomer extends javax.swing.JInternalFrame {
         String date = da.format(txtdob.getDate());
         
         String gender;
-        if(r1.isSelected()){
+        if(radioMaleButton.isSelected()){
         gender = "Male";
         }
         else{
@@ -562,7 +567,7 @@ public class searchCustomer extends javax.swing.JInternalFrame {
         this.hide();
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+    private void findButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findButtonActionPerformed
 
         String id = txtcustid.getText();
         try {
@@ -595,12 +600,12 @@ public class searchCustomer extends javax.swing.JInternalFrame {
                 ImageIcon newImage = new ImageIcon(myImg);
 
                 if(gender.equals("Female")){
-                    r1.setSelected(false);
-                    r2.setSelected(true);
+                    radioMaleButton.setSelected(false);
+                    radioFemaleButton.setSelected(true);
                 }
                 else{
-                    r1.setSelected(true);
-                    r2.setSelected(false);
+                    radioMaleButton.setSelected(true);
+                    radioFemaleButton.setSelected(false);
                 }
 
                 String contact = rs.getString("contact");
@@ -624,7 +629,11 @@ public class searchCustomer extends javax.swing.JInternalFrame {
             Logger.getLogger(searchCustomer.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-    }//GEN-LAST:event_jButton7ActionPerformed
+    }//GEN-LAST:event_findButtonActionPerformed
+
+    private void radioMaleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioMaleButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_radioMaleButtonActionPerformed
    
     public void autoID(){       
         try {
@@ -648,13 +657,13 @@ public class searchCustomer extends javax.swing.JInternalFrame {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton findButton;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -690,8 +699,8 @@ public class searchCustomer extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
-    private javax.swing.JRadioButton r1;
-    private javax.swing.JRadioButton r2;
+    private javax.swing.JRadioButton radioFemaleButton;
+    private javax.swing.JRadioButton radioMaleButton;
     private javax.swing.JTextArea txtaddress;
     private javax.swing.JTextField txtcontact;
     private javax.swing.JTextField txtcustid;

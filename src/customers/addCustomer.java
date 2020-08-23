@@ -78,16 +78,16 @@ public class addCustomer extends javax.swing.JInternalFrame {
         txtcontact = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
-        r1 = new javax.swing.JRadioButton();
-        r2 = new javax.swing.JRadioButton();
+        radioMaleButton = new javax.swing.JRadioButton();
+        radioFemaleButton = new javax.swing.JRadioButton();
         txtdob = new com.toedter.calendar.JDateChooser();
         jLabel21 = new javax.swing.JLabel();
         txtid = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         txtphoto = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
+        cancelButton = new javax.swing.JButton();
         addButton = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        browseButton = new javax.swing.JButton();
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(204, 0, 0));
@@ -339,9 +339,14 @@ public class addCustomer extends javax.swing.JInternalFrame {
         jLabel20.setForeground(new java.awt.Color(255, 255, 255));
         jLabel20.setText("Gender");
 
-        r1.setText("Male");
+        radioMaleButton.setText("Male");
+        radioMaleButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioMaleButtonActionPerformed(evt);
+            }
+        });
 
-        r2.setText("Female");
+        radioFemaleButton.setText("Female");
 
         jLabel21.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(255, 255, 255));
@@ -361,9 +366,9 @@ public class addCustomer extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(r1)
+                        .addComponent(radioMaleButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(r2))
+                        .addComponent(radioFemaleButton))
                     .addComponent(txtdob, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtcontact))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -378,8 +383,8 @@ public class addCustomer extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel20)
-                    .addComponent(r1)
-                    .addComponent(r2))
+                    .addComponent(radioMaleButton)
+                    .addComponent(radioFemaleButton))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel19)
@@ -396,10 +401,10 @@ public class addCustomer extends javax.swing.JInternalFrame {
 
         txtphoto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jButton4.setText("Cancel");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        cancelButton.setText("Cancel");
+        cancelButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                cancelButtonActionPerformed(evt);
             }
         });
 
@@ -410,10 +415,10 @@ public class addCustomer extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton2.setText("Browse");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        browseButton.setText("Browse");
+        browseButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                browseButtonActionPerformed(evt);
             }
         });
 
@@ -428,7 +433,7 @@ public class addCustomer extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtid, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jButton2)
+                        .addComponent(browseButton)
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(27, 27, 27)
@@ -440,7 +445,7 @@ public class addCustomer extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -457,10 +462,10 @@ public class addCustomer extends javax.swing.JInternalFrame {
                         .addComponent(txtphoto, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(6, 6, 6)
-                .addComponent(jButton2)
+                .addComponent(browseButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
@@ -468,7 +473,7 @@ public class addCustomer extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void browseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browseButtonActionPerformed
         try {
             JFileChooser picchooser = new JFileChooser();
             picchooser.showOpenDialog(null);
@@ -496,7 +501,7 @@ public class addCustomer extends javax.swing.JInternalFrame {
         } catch (IOException ex) {
             Logger.getLogger(addCustomer.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_browseButtonActionPerformed
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         String id = txtid.getText();
@@ -509,7 +514,7 @@ public class addCustomer extends javax.swing.JInternalFrame {
         String date = da.format(txtdob.getDate());        
         String gender;
         
-        if(r1.isSelected()){
+        if(radioMaleButton.isSelected()){
         gender = "Male";
         }
         else{
@@ -544,9 +549,13 @@ public class addCustomer extends javax.swing.JInternalFrame {
         }  
     }//GEN-LAST:event_addButtonActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
         this.hide();
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_cancelButtonActionPerformed
+
+    private void radioMaleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioMaleButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_radioMaleButtonActionPerformed
   
     public void autoID(){       
         try {
@@ -575,10 +584,10 @@ public class addCustomer extends javax.swing.JInternalFrame {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton;
+    private javax.swing.JButton browseButton;
+    private javax.swing.JButton cancelButton;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
@@ -615,8 +624,8 @@ public class addCustomer extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
-    private javax.swing.JRadioButton r1;
-    private javax.swing.JRadioButton r2;
+    private javax.swing.JRadioButton radioFemaleButton;
+    private javax.swing.JRadioButton radioMaleButton;
     private javax.swing.JTextArea txtaddress;
     private javax.swing.JTextField txtcontact;
     private com.toedter.calendar.JDateChooser txtdob;

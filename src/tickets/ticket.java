@@ -72,7 +72,7 @@ public class ticket extends javax.swing.JInternalFrame {
         txttotal = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         txtdate = new com.toedter.calendar.JDateChooser();
-        jButton1 = new javax.swing.JButton();
+        bookButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Select Country", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 14))); // NOI18N
@@ -313,10 +313,10 @@ public class ticket extends javax.swing.JInternalFrame {
                 .addContainerGap(155, Short.MAX_VALUE))
         );
 
-        jButton1.setText("Book");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        bookButton.setText("Book");
+        bookButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                bookButtonActionPerformed(evt);
             }
         });
 
@@ -350,7 +350,7 @@ public class ticket extends javax.swing.JInternalFrame {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton1)
+                        .addComponent(bookButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(cancelButton)))
                 .addContainerGap())
@@ -375,7 +375,7 @@ public class ticket extends javax.swing.JInternalFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(bookButton)
                     .addComponent(cancelButton)))
         );
 
@@ -505,7 +505,7 @@ public class ticket extends javax.swing.JInternalFrame {
         txttotal.setText(String.valueOf(total));           
     }//GEN-LAST:event_txtseatsStateChanged
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void bookButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookButtonActionPerformed
         
         String ticketid = txtticketno.getText();       
         String flightID = txtflightno.getText(); 
@@ -536,15 +536,15 @@ public class ticket extends javax.swing.JInternalFrame {
         } catch (ClassNotFoundException | SQLException ex) {        
             //Logger.getLogger(addflight.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_bookButtonActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
         this.hide();
     }//GEN-LAST:event_cancelButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bookButton;
     private javax.swing.JButton cancelButton;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
