@@ -1,3 +1,11 @@
+
+import users.userCreation;
+import flights.addflight;
+import tickets.ticket;
+import tickets.ticketreport;
+import customers.addCustomer;
+import customers.searchCustomer;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -29,7 +37,7 @@ public class Main extends javax.swing.JFrame {
         jDesktopPane1 = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        addCustomerMenuBar = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         bookTicket = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
@@ -56,13 +64,13 @@ public class Main extends javax.swing.JFrame {
 
         jMenu1.setText("Customer");
 
-        jMenuItem1.setText("Add Customer");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        addCustomerMenuBar.setText("Add Customer");
+        addCustomerMenuBar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                addCustomerMenuBarActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        jMenu1.add(addCustomerMenuBar);
 
         jMenuItem2.setText("Search Customer");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
@@ -137,11 +145,11 @@ public class Main extends javax.swing.JFrame {
     /********************
     Create connect betwen main menu and subwindow where we can add new CUstomer
     ********************/
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void addCustomerMenuBarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCustomerMenuBarActionPerformed
         addCustomer cus = new addCustomer();
         jDesktopPane1.add(cus);
         cus.setVisible(true); 
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_addCustomerMenuBarActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         searchCustomer scus = new searchCustomer();
@@ -209,13 +217,13 @@ public class Main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem addCustomerMenuBar;
     private javax.swing.JMenu bookTicket;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
